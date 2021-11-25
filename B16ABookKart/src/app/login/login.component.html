@@ -1,0 +1,36 @@
+<div fxLayoutAlign="center center" fxFlexFill class="main-div">
+  <mat-card fxFlex="35">
+
+    <p>
+      <mat-toolbar color="primary"><span>Login</span> <span class="ex-spacer"></span>New User?<button>Register</button>
+      </mat-toolbar>
+    </p>
+    <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="loginform" (ngSubmit)="submit()">
+      <mat-form-field>
+        <input matInput placeholder="Username" formControlName="username">
+       <!--<span style="color:red;" *ngif="loginform.get('username')?.touched">username required</span> -->
+      
+      </mat-form-field>
+      <mat-form-field>
+        <input type="password" matInput placeholder="Password" formControlName="password">
+       <!-- <span style="color:red;" *ngif="loginform.get('password')?.errors?.required && loginform.get('password')?.touched">password
+          required</span>-->
+      </mat-form-field>
+      <p align="right"> <button mat-raised-button color="primary" class="log-button" type="submit">Login</button></p>
+    </form>
+
+
+  </mat-card>
+</div>
+
+<!--<form [formGroup]="loginform" (ngSubmit)="submit()">
+  <div style="border:1px solid black;height: 50%;width:30%;padding: 10px; ">
+    <label>UserName</label><input type="text" formControlName="username">
+   <!-- <span style="color: red;" *ngIf="isSubmitted && f.username?.errors?.required">name
+      required</span><br><br>
+    <label>Password</label><input type="password" formControlName="password">
+    <!--<span style="color: red;" *ngIf="isSubmitted && f.password?.errors?.required">password required</span>
+
+    <button type="submit">submit</button>
+  </div>
+</form>-->
