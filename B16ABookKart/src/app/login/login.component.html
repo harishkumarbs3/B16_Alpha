@@ -2,22 +2,29 @@
   <mat-card fxFlex="35">
 
     <p>
-      <mat-toolbar color="primary"><span>Login</span> <span class="ex-spacer"></span>New User?<button>Register</button>
+        <mat-toolbar color="accent"><span>Login</span> <span class="ex-spacer"></span><h4>New User?<button mat-raised-button type="submit" (click)="reg()">Register</button></h4>
       </mat-toolbar>
     </p>
+  <div class="child-div">
     <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="loginform" (ngSubmit)="submit()">
       <mat-form-field>
         <input matInput placeholder="Username" formControlName="username">
-       <!--<span style="color:red;" *ngif="loginform.get('username')?.touched">username required</span> -->
+       <span style="color:red;" *ngIf= "loginform.controls['username'].invalid && (loginform.controls['username'].dirty || loginform.controls['username'].touched)">username required</span> 
       
       </mat-form-field>
       <mat-form-field>
-        <input type="password" matInput placeholder="Password" formControlName="password">
-       <!-- <span style="color:red;" *ngif="loginform.get('password')?.errors?.required && loginform.get('password')?.touched">password
-          required</span>-->
+        <!--<input  placeholder="password" formControlName="password" matInput [type]="hide ? 'password' : 'text'" required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"  [attr.aria-pressed]="hide">
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>-->
+        <input  matInput [type]="pwToggle.type" placeholder="Password" formControlName="password">
+        <button mat-icon-button matSuffix appPasswordToggle #pwToggle="appPasswordToggle"><mat-icon>{{pwToggle.icon}}</mat-icon></button>
+       <span style="color:red;" *ngIf="loginform.controls['password'].invalid && (loginform.controls['password'].dirty || loginform.controls['password'].touched)">password
+          required</span>
       </mat-form-field>
-      <p align="right"> <button mat-raised-button color="primary" class="log-button" type="submit">Login</button></p>
+      <p align="right"> <button mat-raised-button color="primary" class="log-button" type="submit" >Login</button></p>
     </form>
+  </div>
 
 
   </mat-card>
